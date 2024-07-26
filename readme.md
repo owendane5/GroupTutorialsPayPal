@@ -9,10 +9,15 @@
 - Install Node (Npm)
 - Head to (https://nodejs.org/en) and download.
 
-- Second up is install express.  Express hbs view is going to be our node.js template for this demo.
-- In the terminal run *npm install -g express* and follow instructions. (G for global installation)
-- Then run *express --view=hbs*
+- Second, install express.  Express hbs view is going to be our node.js template for this demo.
+- In the terminal run *npm install express* and follow instructions.
 
+- Third, install hbs template for ease of use.  
+- In the terminal run *express --view=hbs*
+- Run *npm i* for dependencies.
+
+- Fourth, install Axios. Axios will be used to make the http requests to PayPal, which is the simplest way.
+- In the terminal run *npm install axios* to install axios.
 
 ## *Step Two: Set up PayPal account*
 
