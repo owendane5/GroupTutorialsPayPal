@@ -3,10 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var axios = require('axios');
+//Add routes for paypal
 
+var purchaseRouter = require('./routes/purchase');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+
 
 var app = express();
 
@@ -20,9 +21,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+// add routes for paypal
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/purchase', purchaseRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

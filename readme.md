@@ -40,6 +40,10 @@
 
 - First step is to create a .env
 - Now store those three credentials you have gathered. (CLIENT_ID, SECRET, BASE_URL)
+
 - Second, please create a services folder for our axios function.
 - Inside the folder create a file called paypalServices.js
-- Here you will defining 
+- Here you will defining how you want to handle the order (Please use reference from *https://developer.paypal.com/docs/api/orders/v2/*)
+
+- Inside the file we need to define axios
+- Next create payment function
