@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const paypalService = require('../services/paypalServices');
-
+// Route for purchase page
+// When the user clicks on the purchase button, the /purchase/pay route is called.
+// This is the json object that is sent to the paypal api
 router.post('/pay', async (req, res) => {
     const orderData = {
         intent: 'CAPTURE',
@@ -30,6 +32,7 @@ router.post('/pay', async (req, res) => {
                 }
             }
         ],
+        // Application context is context for the application
         application_context: {
             return_url: process.env.APP_BASE_URL + '/purchase/complete-order',
             cancel_url: process.env.APP_BASE_URL + '/purchase/cancel-order',
@@ -38,7 +41,7 @@ router.post('/pay', async (req, res) => {
             brand_name: 'amazing.io'
         }
     };
-
+    // Create order method is called with orderData
     try {
         const url = await paypalService.createOrder(orderData);
         res.redirect(url);
@@ -46,7 +49,7 @@ router.post('/pay', async (req, res) => {
         res.send('Error: ' + error.message);
     }
 });
-
+    // Route for complete order
 router.get('/complete-order', async (req, res) => {
     try {
         await paypalService.capturePayment(req.query.token);
@@ -55,7 +58,7 @@ router.get('/complete-order', async (req, res) => {
         res.send('Error: ' + error.message);
     }
 });
-
+    // Route for cancel order
 router.get('/cancel-order', (req, res) => {
     res.redirect('/');
 });

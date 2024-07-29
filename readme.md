@@ -45,5 +45,48 @@
 - Inside the folder create a file called paypalServices.js
 - Here you will defining how you want to handle the order (Please use reference from *https://developer.paypal.com/docs/api/orders/v2/*)
 
-- Inside the file we need to define axios
-- Next create payment function
+### paypalServices.js
+
+- Import axios for HTTP requests.
+- Define generateAccessToken function:
+- Send POST request to /v1/oauth2/token with client credentials.
+- return the access token from the response.
+- Define paypalService object with two methods:
+- createOrder:
+- Get access token using generateAccessToken.
+- Send POST request to /v2/checkout/orders with order data.
+- Return the approval link from the response.
+- capturePayment:
+- Get access token using generateAccessToken.
+- Send POST request to /v2/checkout/orders/{orderId}/capture.
+- Return the response data.
+- Export paypalService object.
+
+### purchase.js route
+- Import express, paypalService, and router
+- Define a POST route at /pay.
+- Create an orderData object that contains the details of the purchase.
+- Use the paypalService.createOrder method to create an order with the orderData.
+- Redirect the user to the PayPal URL returned by the createOrder method.
+- Handle any errors by sending an error message as a response.
+- Define a GET route at /complete-order.
+- Use the paypalService.capturePayment method to capture the payment using the token from the query parameters.
+- Send a success message if the payment is captured successfully.
+- Handle any errors by sending an error message as a response.
+- Define a GET route at /cancel-order.
+- Redirect the user to the home page.
+- Export the Router:
+
+
+### app.js 
+- Import Dotenv
+- Define routes and use - var purchaseRouter = require('./routes/purchase'); - app.use('/purchase', purchaseRouter);
+
+
+## *Trouble Shooting Tips*
+
+- Check for Missing dependencies
+- Make sure .env is set up correctly with the correct info
+- Check endpoints
+
+- For help on this process use https://developer.paypal.com/api/rest/
