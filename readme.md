@@ -45,6 +45,9 @@
 - Inside the folder create a file called paypalServices.js
 - Here you will defining how you want to handle the order (Please use reference from *https://developer.paypal.com/docs/api/orders/v2/*)
 
+### index.hbs
+- Add button form with pay route and post.
+
 ### paypalServices.js
 
 - Import axios for HTTP requests.
